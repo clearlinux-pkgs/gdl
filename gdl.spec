@@ -4,10 +4,10 @@
 #
 Name     : gdl
 Version  : 3.28.0
-Release  : 1
+Release  : 2
 URL      : https://download.gnome.org/sources/gdl/3.28/gdl-3.28.0.tar.xz
 Source0  : https://download.gnome.org/sources/gdl/3.28/gdl-3.28.0.tar.xz
-Summary  : Gnome Docking Library
+Summary  : GNOME Docking Library
 Group    : Development/Tools
 License  : LGPL-2.0
 Requires: gdl-data = %{version}-%{release}
@@ -44,6 +44,7 @@ Group: Development
 Requires: gdl-lib = %{version}-%{release}
 Requires: gdl-data = %{version}-%{release}
 Provides: gdl-devel = %{version}-%{release}
+Requires: gdl = %{version}-%{release}
 
 %description dev
 dev components for the gdl package.
@@ -91,7 +92,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1543823188
+export SOURCE_DATE_EPOCH=1556998573
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -103,7 +111,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1543823188
+export SOURCE_DATE_EPOCH=1556998573
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gdl
 cp COPYING %{buildroot}/usr/share/package-licenses/gdl/COPYING
