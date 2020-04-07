@@ -4,10 +4,10 @@
 #
 Name     : gdl
 Version  : 3.34.0
-Release  : 3
+Release  : 4
 URL      : https://download.gnome.org/sources/gdl/3.34/gdl-3.34.0.tar.xz
 Source0  : https://download.gnome.org/sources/gdl/3.34/gdl-3.34.0.tar.xz
-Summary  : GNOME Docking Library
+Summary  : Gnome Docking Library
 Group    : Development/Tools
 License  : LGPL-2.0
 Requires: gdl-data = %{version}-%{release}
@@ -44,7 +44,6 @@ Group: Development
 Requires: gdl-lib = %{version}-%{release}
 Requires: gdl-data = %{version}-%{release}
 Provides: gdl-devel = %{version}-%{release}
-Requires: gdl = %{version}-%{release}
 Requires: gdl = %{version}-%{release}
 
 %description dev
@@ -87,21 +86,21 @@ locales components for the gdl package.
 
 %prep
 %setup -q -n gdl-3.34.0
+cd %{_builddir}/gdl-3.34.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1568046058
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1586224961
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
@@ -114,10 +113,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1568046058
+export SOURCE_DATE_EPOCH=1586224961
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gdl
-cp COPYING %{buildroot}/usr/share/package-licenses/gdl/COPYING
+cp %{_builddir}/gdl-3.34.0/COPYING %{buildroot}/usr/share/package-licenses/gdl/ba8966e2473a9969bdcab3dc82274c817cfd98a1
 %make_install
 %find_lang gdl-3
 
@@ -185,7 +184,7 @@ cp COPYING %{buildroot}/usr/share/package-licenses/gdl/COPYING
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/gdl/COPYING
+/usr/share/package-licenses/gdl/ba8966e2473a9969bdcab3dc82274c817cfd98a1
 
 %files locales -f gdl-3.lang
 %defattr(-,root,root,-)
