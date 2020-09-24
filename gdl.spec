@@ -4,7 +4,7 @@
 #
 Name     : gdl
 Version  : 3.34.0
-Release  : 4
+Release  : 5
 URL      : https://download.gnome.org/sources/gdl/3.34/gdl-3.34.0.tar.xz
 Source0  : https://download.gnome.org/sources/gdl/3.34/gdl-3.34.0.tar.xz
 Summary  : Gnome Docking Library
